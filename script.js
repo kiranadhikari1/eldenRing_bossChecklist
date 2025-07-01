@@ -9,6 +9,13 @@ const bosses = {
     "Black Knife Assassin",
     "Crucible Knight",
     "Ulcerated Tree Spirit",
+    "Grave Warden Duelist",
+    "Bell Bearing Hunter",
+    "Demi-Human Chief",
+    "Erdtree Burial Watchdog",
+    "Guardian Golem",
+    "Stone Digger Troll",
+    "Tibia Mariner",
     "*Margit, the Fell Omen",
     "*Godrick the Grafted"
   ],
@@ -17,6 +24,11 @@ const bosses = {
     "Leonine Misbegotten",
     "Ancient Hero of Zamor",
     "Cemetery Shade",
+    "Deathbird",
+    "Erdtree Burial Watchdog",
+    "Scaly Misbegotten",
+    "Miranda the Blighted Bloom",
+    "Tibia Mariner",
     "Night’s Cavalry"
   ],
   "Liurnia of the Lakes": [
@@ -26,7 +38,21 @@ const bosses = {
     "Royal Knight Loretta",
     "Spirit-Caller Snail",
     "Adula, Glintstone Dragon",
-    "Night’s Cavalry",
+    "Night’s Cavalry (North)",
+    "Night’s Cavalry (South)",
+    "Bell Bearing Hunter",
+    "Black Knife Assassin",
+    "Bols, Carian Knight",
+    "Cemetery Shade",
+    "Deathbird",
+    "Death Rite Bird",
+    "Erdtree Avatar (Northeast)",
+    "Erdtree Avatar (Southwest)",
+    "Erdtree Burial Watchdog",
+    "Grafted Scion (Four Belfries)",
+    "Magma Wyrm Makar",
+    "Omenslayer",
+    "Red Wolf of Radagon",
     "*Rennala, Queen of the Full Moon"
   ],
   "Siofra / Nokron / Deeproot Depths": [
@@ -46,7 +72,35 @@ const bosses = {
     "Deathbird",
     "Night’s Cavalry",
     "Fallingstar Beast",
+    "Battlemage Hugues",
+    "Frenzied Duelist",
+    "Magma Wyrm",
+    "Putrid Crystalian Trio",
+    "Nox Swordstress & Nox Priest",
+    "Erdtree Burial Watchdog (Duo)",
+    "Mad Pumpkin Heads",
     "*Starscourge Radahn"
+  ],
+  "Dragonbarrow": [
+    "Beast of Farum Azula",
+    "Bell Bearing Hunter",
+    "⭐ Black Blade Kindred (Bestial Sanctum)",
+    "Flying Dragon Greyll",
+    "Godskin Apostle",
+    "Night’s Cavalry",
+    "Putrid Avatar",
+    "Putrid Tree Spirit"
+  ],
+  "Mt. Gelmir": [
+    "Abductor Virgins (Duo)",
+    "Demi-Human Queen Margot",
+    "Demi-Human Queen Maggie",
+    "Full-Grown Fallingstar Beast",
+    "God-Devouring Serpent / Rykard",
+    "Kindred of Rot (Duo)",
+    "Magma Wyrm",
+    "Red Wolf of the Champion",
+    "Ulcerated Tree Spirit"
   ],
   "Altus Plateau": [
     "Wormface",
@@ -56,17 +110,32 @@ const bosses = {
     "Godskin Apostle",
     "Death Rite Bird",
     "Night’s Cavalry",
+    "Elemer of the Briar",
+    "Godfrey the Grafted",
+    "Necromancer Garris",
+    "Onyx Lord",
+    "Perfumer Tricia / Misbegotten Warrior",
+    "Omenskiller / Miranda",
     "*Draconic Tree Sentinel"
   ],
   "Leyndell, Royal Capital": [
     "*Godfrey (Golden Shade)",
-    "*Morgott, the Omen King"
+    "*Morgott, the Omen King",
+    "Bell Bearing Hunter",
+    "Crucible Knight Ordovis / Crucible Knight",
+    "Deathbird",
+    "Draconic Tree Sentinel",
+    "Esgar, Priest of Blood"
   ],
   "Mountaintops of the Giants": [
     "Borealis the Freezing Fog",
     "Ancient Hero of Zamor",
+    "Commander Niall",
     "Death Rite Bird",
     "Erdtree Avatar",
+    "Godskin (Summoner Snail)",
+    "Vyke, Knight of the Roundtable",
+    "Ulcerated Tree Spirit",
     "*Fire Giant"
   ],
   "Consecrated Snowfield / Mohgwyn": [
@@ -74,7 +143,17 @@ const bosses = {
     "Putrid Avatar",
     "Death Rite Bird",
     "Night’s Cavalry",
-    "⭐ Mohg, Lord of Blood"
+    "⭐ Mohg, Lord of Blood",
+    "Astel, Stars of Darkness",
+    "Great Wyrm Theodorix",
+    "Misbegotten Crusader",
+    "Putrid Grave Warden Duelist",
+    "Night’s Cavalry (Duo)"
+  ],
+  "Forbidden Lands": [
+    "Black Blade Kindred",
+    "Stray Mimic Tear",
+    "Night’s Cavalry"
   ],
   "Ainsel River / Lake of Rot": [
     "Baleful Shadow",
@@ -82,11 +161,11 @@ const bosses = {
     "Dragonkin Soldier (Lake of Rot)",
     "⭐ Astel, Naturalborn of the Void"
   ],
-  "Haligtree": [
+  "Miquella's Haligtree": [
     "Loretta, Knight of the Haligtree",
-    "*Malenia, Blade of Miquella",
     "Putrid Avatar",
-    "Putrid Tree Spirit"
+    "Putrid Tree Spirit",
+    "*Malenia, Blade of Miquella"
   ],
   "Crumbling Farum Azula": [
     "*Godskin Duo",
@@ -100,6 +179,7 @@ const bosses = {
     "*Elden Beast"
   ]
 };
+
 
 function renderChecklist() {
   const container = document.getElementById("checklist");
