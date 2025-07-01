@@ -117,6 +117,7 @@ function renderChecklist() {
       input.checked = localStorage.getItem(id) === "true";
       input.addEventListener("change", () => {
         localStorage.setItem(id, input.checked);
+        updateProgressCounter();
       });
 
       const bossName = isMain ? boss.slice(1) : boss;
@@ -131,6 +132,8 @@ function renderChecklist() {
 
     container.appendChild(regionDiv);
   });
+
+  updateProgressCounter();
 }
 
 function resetChecklist() {
@@ -141,5 +144,15 @@ function resetChecklist() {
     renderChecklist();
   }
 }
+
+function updateProgressCounter() {
+  const allCheckboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+  const total = allCheckboxes.length;
+  const checked = [...allCheckboxes].filter(cb => cb.checked).length;
+  const percent = total === 0 ? 0 : ((checked / total) * 100).toFixed(1);
+  const counterEl = document.getElementById('progressCounter');
+  counterEl.textContent = `Bosses defeated: ${checked} / ${total} (${percent}%)`;
+}
+
 
 renderChecklist();
