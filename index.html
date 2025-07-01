@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Elden Ring Boss Checklist</title>
-  <link rel="icon" href="background.png">
+  <link rel="icon" href="background.png" />
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -34,6 +34,12 @@
       color: #f04727;
     }
 
+    .boss-highest {
+      color: #ff2e2e;
+      font-weight: 900;
+      text-shadow: 0 0 8px #ff2e2e;
+    }
+
     label {
       display: block;
       margin: 4px 0;
@@ -60,32 +66,36 @@
       background: #c0392b;
     }
 
-  .main-boss {
-  font-weight: bold;
-  color: #f04727;
-}
+    .export-btn {
+      margin-top: 2em;
+      margin-left: 1em;
+      padding: 0.6em 1.2em;
+      font-size: 1em;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
 
-  .boss-highest {
-    color: #ff2e2e;
-    font-weight: 900;
-    text-shadow: 0 0 8px #ff2e2e;
-  }
-
+    .export-btn:hover {
+      background: #2980b9;
+    }
   </style>
 </head>
 <body>
 
   <h1>Elden Ring Boss Checklist (Base Game)</h1>
+  <p>
+    <strong>🟨 Main Story Bosses</strong> are highlighted. <span style="color:#ff2e2e;"></span>
+  </p>
   <p id="progressCounter" style="font-weight: bold; margin-top: 0.5em; color: #f9f9f9; text-shadow: 1px 1px 3px #000;"></p>
-
-  <p><strong>🟨 Main Story Bosses</strong> are highlighted. Progress saves automatically.</p>
 
   <div id="checklist"></div>
 
   <button class="reset-btn" onclick="resetChecklist()">Reset Checklist</button>
+  <button class="export-btn" onclick="exportData()">Export Checklist</button>
 
-  <!-- Load external script -->
   <script src="script.js"></script>
-
 </body>
 </html>

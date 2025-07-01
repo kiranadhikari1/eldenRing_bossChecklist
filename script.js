@@ -227,3 +227,71 @@ function updateProgressCounter() {
 
 
 renderChecklist();
+
+
+function exportData() {
+  if (!confirm("Do you want to export your current checklist data?")) return;
+
+  const playerName = prompt("Enter Player Name:");
+  if (!playerName) {
+    alert("Export cancelled: Player Name is required.");
+    return;
+  }
+
+  // Gather all checkboxes
+  const allCheckboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+  const totalBosses = allCheckboxes.length;
+  const checkedBosses = [...allCheckboxes].filter(cb => cb.checked).length;
+  const percent = totalBosses === 0 ? 0 : ((checkedBosses / totalBosses) * 100).toFixed(1);
+
+  // Count main story and minibosses
+  let totalStoryBosses = 0, totalMiniBosses = 0;
+  let beatenStoryBosses = 0, beatenMiniBosses = 0;
+
+  // Flatten bosses object to array of { region, name, isMain, id }
+  const allBossEntries = [];
+  Object.entries(bosses).forEach(([region, bossList]) => {
+    bossList.forEach((boss, index) => {
+      const isMain = boss.startsWith("*");
+      const bossName = isMain ? boss.slice(1) : boss;
+      const id = `${region}-${index}`;
+      allBossEntries.push({ bossName, isMain, id });
+      if (isMain) totalStoryBosses++;
+      else totalMiniBosses++;
+    });
+  });
+
+  allBossEntries.forEach(({ id, isMain }) => {
+    const checked = localStorage.getItem(id) === "true";
+    if (checked) {
+      if (isMain) beatenStoryBosses++;
+      else beatenMiniBosses++;
+    }
+  });
+
+  // Build export text
+  let output = `Player: ${playerName}\n`;
+  output += `Completion: ${percent}%\n`;
+  output += `Bosses: ${checkedBosses} / ${totalBosses}\n`;
+  output += `Story Bosses: ${beatenStoryBosses} / ${totalStoryBosses}\n`;
+  output += `Mini Bosses: ${beatenMiniBosses} / ${totalMiniBosses}\n\n`;
+
+  allBossEntries.forEach(({ bossName, isMain, id }) => {
+    const beaten = localStorage.getItem(id) === "true";
+    const deathCount = localStorage.getItem(id + '-deaths') || 0;
+    const statusIcon = beaten ? "✅" : "❌";
+
+    output += `${bossName}: ${statusIcon} [${deathCount}]\n`;
+  });
+
+  // Create and trigger download
+  const blob = new Blob([output], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `eldenring_boss_checklist_${playerName.replace(/\s+/g, '_').toLowerCase()}.txt`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
