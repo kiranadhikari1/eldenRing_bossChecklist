@@ -82,6 +82,12 @@ const bosses = {
     "Dragonkin Soldier (Lake of Rot)",
     "⭐ Astel, Naturalborn of the Void"
   ],
+  "Haligtree": [
+    "Loretta, Knight of the Haligtree",
+    "*Malenia, Blade of Miquella",
+    "Putrid Avatar",
+    "Putrid Tree Spirit"
+  ],
   "Crumbling Farum Azula": [
     "*Godskin Duo",
     "*Maliketh, the Black Blade",
@@ -130,7 +136,12 @@ function renderChecklist() {
       const bossName = isMain ? boss.slice(1) : boss;
       const span = document.createElement("span");
       span.textContent = bossName;
-      if (isMain) span.className = "main-boss";
+      if (isMain) span.classList.add("main-boss");
+
+      // Highlight Malenia as highest difficulty
+      if (bossName === "Malenia, Blade of Miquella") {
+        span.classList.add("boss-highest");
+      }
       span.style.flexGrow = "1";
 
       // Death counter container
