@@ -1,7 +1,7 @@
 # Elden Ring Boss Checklist
 
-A simple, interactive checklist for tracking boss kills in the base game **Elden Ring**.  
-This web app lets you mark bosses as defeated and **automatically saves your progress** locally in your browser.  
+A simple, interactive checklist for tracking game progress in the base game **Elden Ring**.  
+This web app lets you mark bosses as defeated, update the attempt counter per boss, extract player data into a .txt file, and **automatically saves your progress** locally in your browser.  
 Ideal for completionists who want an easy way to keep track of their journey.
 
 ## Customization
