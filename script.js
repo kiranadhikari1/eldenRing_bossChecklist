@@ -52,7 +52,7 @@ const bosses = {
     "Grafted Scion (Four Belfries)",
     "Magma Wyrm Makar",
     "Omenslayer",
-    "Red Wolf of Radagon",
+    "*Red Wolf of Radagon",
     "*Rennala, Queen of the Full Moon"
   ],
   "Siofra / Nokron / Deeproot Depths": [
@@ -83,7 +83,7 @@ const bosses = {
   ],
   "Dragonbarrow": [
     "Beast of Farum Azula",
-    "Bell Bearing Hunter",
+    "⭐ Bell Bearing Hunter",
     "⭐ Black Blade Kindred (Bestial Sanctum)",
     "Flying Dragon Greyll",
     "Godskin Apostle",
@@ -124,7 +124,6 @@ const bosses = {
     "Bell Bearing Hunter",
     "Crucible Knight Ordovis / Crucible Knight",
     "Deathbird",
-    "Draconic Tree Sentinel",
     "Esgar, Priest of Blood"
   ],
   "Mountaintops of the Giants": [
@@ -143,7 +142,7 @@ const bosses = {
     "Putrid Avatar",
     "Death Rite Bird",
     "Night’s Cavalry",
-    "⭐ Mohg, Lord of Blood",
+    "*Mohg, Lord of Blood",
     "Astel, Stars of Darkness",
     "Great Wyrm Theodorix",
     "Misbegotten Crusader",
