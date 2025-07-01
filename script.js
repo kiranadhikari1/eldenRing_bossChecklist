@@ -110,7 +110,13 @@ function renderChecklist() {
     bossList.forEach((boss, index) => {
       const id = `${region}-${index}`;
       const isMain = boss.startsWith("*");
+
       const label = document.createElement("label");
+      label.style.display = "flex";
+      label.style.alignItems = "center";
+      label.style.gap = "10px";
+
+      // Checkbox
       const input = document.createElement("input");
       input.type = "checkbox";
       input.id = id;
@@ -120,13 +126,64 @@ function renderChecklist() {
         updateProgressCounter();
       });
 
+      // Boss name
       const bossName = isMain ? boss.slice(1) : boss;
       const span = document.createElement("span");
-      span.textContent = " " + bossName;
+      span.textContent = bossName;
       if (isMain) span.className = "main-boss";
+      span.style.flexGrow = "1";
+
+      // Death counter container
+      const deathContainer = document.createElement("div");
+      deathContainer.style.display = "flex";
+      deathContainer.style.alignItems = "center";
+      deathContainer.style.gap = "5px";
+      deathContainer.style.minWidth = "100px";
+      deathContainer.style.justifyContent = "flex-end";
+
+      // Death count display
+      const deathCountSpan = document.createElement("span");
+      deathCountSpan.style.minWidth = "20px";
+      deathCountSpan.style.textAlign = "center";
+
+      // Get saved death count or start at 0
+      let deathCount = parseInt(localStorage.getItem(id + '-deaths')) || 0;
+      deathCountSpan.textContent = deathCount;
+
+      // Increment button
+      const incBtn = document.createElement("button");
+      incBtn.textContent = "+";
+      incBtn.style.cursor = "pointer";
+      incBtn.style.padding = "2px 6px";
+      incBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        deathCount++;
+        localStorage.setItem(id + '-deaths', deathCount);
+        deathCountSpan.textContent = deathCount;
+      });
+
+      // Decrement button
+      const decBtn = document.createElement("button");
+      decBtn.textContent = "–";
+      decBtn.style.cursor = "pointer";
+      decBtn.style.padding = "2px 6px";
+      decBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (deathCount > 0) {
+          deathCount--;
+          localStorage.setItem(id + '-deaths', deathCount);
+          deathCountSpan.textContent = deathCount;
+        }
+      });
+
+      deathContainer.appendChild(decBtn);
+      deathContainer.appendChild(deathCountSpan);
+      deathContainer.appendChild(incBtn);
 
       label.appendChild(input);
       label.appendChild(span);
+      label.appendChild(deathContainer);
+
       regionDiv.appendChild(label);
     });
 
@@ -142,6 +199,7 @@ function resetChecklist() {
       if (key.includes("-")) localStorage.removeItem(key);
     });
     renderChecklist();
+    updateProgressCounter();
   }
 }
 
@@ -151,7 +209,9 @@ function updateProgressCounter() {
   const checked = [...allCheckboxes].filter(cb => cb.checked).length;
   const percent = total === 0 ? 0 : ((checked / total) * 100).toFixed(1);
   const counterEl = document.getElementById('progressCounter');
-  counterEl.textContent = `Bosses defeated: ${checked} / ${total} (${percent}%)`;
+  if (counterEl) {
+    counterEl.textContent = `Bosses defeated: ${checked} / ${total} (${percent}%)`;
+  }
 }
 
 
