@@ -244,6 +244,7 @@ function renderChecklist() {
         deathCount++;
         localStorage.setItem(id + "-deaths", deathCount);
         deathCountSpan.textContent = deathCount;
+        updateProgressCounter();
       });
 
       const decBtn = document.createElement("button");
@@ -255,6 +256,7 @@ function renderChecklist() {
           deathCount--;
           localStorage.setItem(id + "-deaths", deathCount);
           deathCountSpan.textContent = deathCount;
+          updateProgressCounter();
         }
       });
 
@@ -294,6 +296,7 @@ function updateProgressCounter() {
 
   const counterEl = document.getElementById("progressCounter");
   const storyCounterEl = document.getElementById("storyProgressCounter");
+  const totalDeathsEl = document.getElementById("totalDeathsCounter");
 
   if (counterEl) {
     counterEl.textContent = `Bosses defeated: ${checked} / ${total} (${percent}%)`;
@@ -310,6 +313,19 @@ function updateProgressCounter() {
 
   if (storyCounterEl) {
     storyCounterEl.textContent = `Main Bosses Defeated: ${storyDefeatedCount} / ${totalMainBosses}`;
+  }
+
+  // Calculate total deaths by summing all individual death counts
+  let totalDeaths = 0;
+  Object.keys(localStorage).forEach((key) => {
+    if (key.endsWith("-deaths")) {
+      const val = parseInt(localStorage.getItem(key));
+      if (!isNaN(val)) totalDeaths += val;
+    }
+  });
+
+  if (totalDeathsEl) {
+    totalDeathsEl.textContent = `Total Deaths: ${totalDeaths}`;
   }
 }
 

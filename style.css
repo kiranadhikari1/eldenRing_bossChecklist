@@ -14,15 +14,18 @@ body {
 h1 {
   color: #f1f1f1;
   margin-bottom: 10px;
+  font-family: 'MedievalSharp', cursive;
 }
 
 h2 {
   color: #e2b714;
   margin-bottom: 10px;
+  font-family: 'MedievalSharp', cursive;
 }
 
 p {
   margin: 0.3em 0;
+  font-family: 'MedievalSharp', cursive;
 }
 
 label.boss-label {
@@ -173,5 +176,23 @@ label span.boss-location {
   flex-shrink: 0;
   font-size: 0.85em;
   text-shadow: 1px 1px 2px #00000088;
+  font-family: 'MedievalSharp', cursive;
+}
+
+#countersContainer {
+  position: fixed;
+  top: 30%;
+  right: 100px;
+  transform: translateY(-50%);
+  border: 1px solid #333;
+  padding: 20px;
+  margin-bottom: 30px;
+  background-color: transparent;
+  z-index: 1000;
+  width: 320px;
+  box-sizing: border-box;
+  cursor: default;
+  border-radius: 4px;
+  box-shadow: 0 0 5px #222;
   font-family: 'MedievalSharp', cursive;
 }
