@@ -204,11 +204,8 @@ function renderChecklist() {
       const bossLocation = boss.location;
 
       const label = document.createElement("label");
-      label.style.display = "flex";
-      label.style.alignItems = "center";
-      label.style.gap = "10px";
+      label.classList.add("boss-label");
 
-      // Checkbox
       const input = document.createElement("input");
       input.type = "checkbox";
       input.id = id;
@@ -218,44 +215,30 @@ function renderChecklist() {
         updateProgressCounter();
       });
 
-      // Boss name span
       const nameSpan = document.createElement("span");
       nameSpan.textContent = bossName;
+      nameSpan.classList.add("boss-name");
       if (isMain) nameSpan.classList.add("main-boss");
       if (bossName === "Malenia, Blade of Miquella") {
         nameSpan.classList.add("boss-highest");
       }
-      nameSpan.style.flexGrow = "1";
 
-      // Location span with smaller font size and lighter color
       const locationSpan = document.createElement("span");
       locationSpan.textContent = ` (${bossLocation})`;
-      locationSpan.style.fontSize = "0.85em";  // smaller font size
-      locationSpan.style.color = "#bbb";       // lighter color for subtlety
-      locationSpan.style.flexShrink = "0";
+      locationSpan.classList.add("boss-location");
 
-      // Death counter container
       const deathContainer = document.createElement("div");
-      deathContainer.style.display = "flex";
-      deathContainer.style.alignItems = "center";
-      deathContainer.style.gap = "5px";
-      deathContainer.style.minWidth = "100px";
-      deathContainer.style.justifyContent = "flex-end";
+      deathContainer.classList.add("death-container");
 
-      // Death count display
       const deathCountSpan = document.createElement("span");
-      deathCountSpan.style.minWidth = "20px";
-      deathCountSpan.style.textAlign = "center";
+      deathCountSpan.classList.add("death-count");
 
-      // Get saved death count or start at 0
       let deathCount = parseInt(localStorage.getItem(id + "-deaths")) || 0;
       deathCountSpan.textContent = deathCount;
 
-      // Increment button
       const incBtn = document.createElement("button");
       incBtn.textContent = "+";
-      incBtn.style.cursor = "pointer";
-      incBtn.style.padding = "2px 6px";
+      incBtn.classList.add("death-button");
       incBtn.addEventListener("click", (e) => {
         e.preventDefault();
         deathCount++;
@@ -263,11 +246,9 @@ function renderChecklist() {
         deathCountSpan.textContent = deathCount;
       });
 
-      // Decrement button
       const decBtn = document.createElement("button");
       decBtn.textContent = "–";
-      decBtn.style.cursor = "pointer";
-      decBtn.style.padding = "2px 6px";
+      decBtn.classList.add("death-button");
       decBtn.addEventListener("click", (e) => {
         e.preventDefault();
         if (deathCount > 0) {
@@ -318,10 +299,8 @@ function updateProgressCounter() {
     counterEl.textContent = `Bosses defeated: ${checked} / ${total} (${percent}%)`;
   }
 
-  // Count story bosses defeated
   let storyDefeatedCount = 0;
   allCheckboxes.forEach((checkbox) => {
-    // checkbox id is in format region-index, get region and index
     const [region, index] = checkbox.id.split("-");
     const boss = bosses[region] && bosses[region][parseInt(index)];
     if (boss && boss.main && checkbox.checked) {
@@ -398,5 +377,4 @@ function exportData() {
   URL.revokeObjectURL(url);
 }
 
-// Call renderChecklist once page loads
 renderChecklist();

@@ -1,0 +1,177 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #121212;
+  color: #f1f1f1;
+  padding: 20px;
+  
+  background-image: url("background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+}
+
+h1 {
+  color: #f1f1f1;
+  margin-bottom: 10px;
+}
+
+h2 {
+  color: #e2b714;
+  margin-bottom: 10px;
+}
+
+p {
+  margin: 0.3em 0;
+}
+
+label.boss-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 6px 0;
+}
+
+.boss-name {
+  flex-grow: 1;
+}
+
+.boss-location {
+  font-size: 0.85em;
+  color: #bbb;
+  flex-shrink: 0;
+}
+
+.main-boss {
+  color: #f28500;
+  font-weight: bold;
+}
+
+.boss-highest {
+  color: #ff3e3e;
+  font-weight: bold;
+  text-shadow: 0 0 5px red;
+}
+
+.death-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 100px;
+  justify-content: flex-end;
+}
+
+.death-count {
+  min-width: 20px;
+  text-align: center;
+}
+
+.death-button {
+  padding: 2px 6px;
+  cursor: pointer;
+  background-color: #333;
+  color: #f1f1f1;
+  border: 1px solid #555;
+  border-radius: 4px;
+}
+
+.death-button:hover {
+  background-color: #444;
+}
+
+button.reset-btn,
+button.export-btn {
+  margin-top: 20px;
+  margin-right: 10px;
+  padding: 6px 12px;
+  font-size: 14px;
+  background-color: #333;
+  color: #f1f1f1;
+  border: 1px solid #555;
+  border-radius: 5px;
+}
+
+button.reset-btn:hover,
+button.export-btn:hover {
+  background-color: #444;
+}
+
+#progressCounter,
+#storyProgressCounter {
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: block;
+  font-size: 1.1em;
+  color: #f9f9f9;
+  text-shadow: 1px 1px 3px #000;
+}
+
+.region {
+  margin-bottom: 30px;
+  border: 1px solid #444;
+  border-radius: 10px;
+  padding: 12px 14px;
+  background-color: rgba(255, 255, 255, 0.03);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.boss-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 0;
+  flex-wrap: wrap;
+}
+
+.boss-name {
+  flex-grow: 1;
+  font-size: 1em;
+}
+
+.boss-location {
+  font-size: 0.85em;
+  color: #bbb;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.death-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 100px;
+  justify-content: flex-end;
+}
+
+.death-count {
+  min-width: 20px;
+  text-align: center;
+}
+
+.death-button {
+  cursor: pointer;
+  padding: 2px 6px;
+  background-color: #333;
+  color: #f1f1f1;
+  border: 1px solid #555;
+  border-radius: 4px;
+}
+
+.death-button:hover {
+  background-color: #444;
+}
+
+#checklist {
+  max-width: 1000px;
+  margin-left: 0;
+  margin-right: auto;
+  font-family: 'MedievalSharp', cursive;
+}
+
+label span.boss-location {
+  flex-shrink: 0;
+  font-size: 0.85em;
+  text-shadow: 1px 1px 2px #00000088;
+  font-family: 'MedievalSharp', cursive;
+}
