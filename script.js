@@ -299,7 +299,7 @@ function updateProgressCounter() {
   const totalDeathsEl = document.getElementById("totalDeathsCounter");
 
   if (counterEl) {
-    counterEl.textContent = `Bosses defeated: ${checked} / ${total} (${percent}%)`;
+    counterEl.textContent = `Bosses defeated: ${checked} / ${total}`;
   }
 
   let storyDefeatedCount = 0;
@@ -326,6 +326,13 @@ function updateProgressCounter() {
 
   if (totalDeathsEl) {
     totalDeathsEl.textContent = `Total Deaths: ${totalDeaths}`;
+  }
+
+  // Update progress bar
+  const bar = document.getElementById("progressBar");
+  if (bar) {
+    bar.style.width = `${percent}%`;
+    bar.textContent = `${percent}%`;
   }
 }
 

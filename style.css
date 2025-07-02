@@ -189,10 +189,35 @@ label span.boss-location {
   margin-bottom: 30px;
   background-color: transparent;
   z-index: 1000;
-  width: 320px;
+  width: 350px;
   box-sizing: border-box;
   cursor: default;
   border-radius: 4px;
   box-shadow: 0 0 5px #222;
   font-family: 'MedievalSharp', cursive;
 }
+
+#progressBarWrapper {
+  width: 100%;
+  height: 13px;
+  background-color: #333;
+  border: 1px solid #666;
+  border-radius: 5px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+#progressBar {
+  height: 100%;
+  width: 0%;
+  background-color: #4caf50;
+  transition: width 0.3s ease-in-out;
+  color: #fff;
+  text-align: center;
+  font-size: 0.8em;
+  font-weight: bold;
+  line-height: 10px;
+  font-family: 'Uncial Antiqua', 'MedievalSharp', serif;
+}
+
+
