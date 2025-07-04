@@ -289,3 +289,24 @@ label span.boss-location {
   outline: none;
   border-color: #777;
 }
+
+.defeat-level-container {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 0.9em;
+  color: #4CAF50;
+}
+
+.defeat-level-label {
+  font-weight: bold;
+}
+
+.defeat-level-input {
+  width: 50px;
+  padding: 2px 4px;
+  margin-left: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.9);
+  text-align: center;
+}

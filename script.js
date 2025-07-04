@@ -178,7 +178,6 @@ const bosses = {
     { name: "Elden Beast", location: "Erdtree Throne", main: true }
   ]
 };
-
 // Calculate total main bosses count once
 const totalMainBosses = Object.values(bosses)
   .flat()
@@ -237,6 +236,19 @@ function renderChecklist() {
       input.checked = localStorage.getItem(id) === "true";
       input.addEventListener("change", () => {
         localStorage.setItem(id, input.checked);
+        
+        // Track defeat level when boss is checked
+        if (input.checked) {
+          const currentDefeatLevel = localStorage.getItem(id + "-defeatLevel");
+          if (!currentDefeatLevel) {
+            localStorage.setItem(id + "-defeatLevel", playerLevel);
+          }
+        } else {
+          // Remove defeat level when unchecked
+          localStorage.removeItem(id + "-defeatLevel");
+        }
+        
+        updateBossDefeatLevel(id);
         updateProgressCounter();
       });
 
@@ -251,6 +263,11 @@ function renderChecklist() {
       const locationSpan = document.createElement("span");
       locationSpan.textContent = ` (${bossLocation})`;
       locationSpan.classList.add("boss-location");
+
+      // Defeat level container
+      const defeatLevelContainer = document.createElement("div");
+      defeatLevelContainer.classList.add("defeat-level-container");
+      defeatLevelContainer.id = `defeatLevel-${id}`;
 
       const deathContainer = document.createElement("div");
       deathContainer.classList.add("death-container");
@@ -292,15 +309,59 @@ function renderChecklist() {
       label.appendChild(input);
       label.appendChild(nameSpan);
       label.appendChild(locationSpan);
+      label.appendChild(defeatLevelContainer);
       label.appendChild(deathContainer);
 
       regionDiv.appendChild(label);
+      
+      // Initialize defeat level display
+      updateBossDefeatLevel(id);
     });
 
     container.appendChild(regionDiv);
   });
 
   updateProgressCounter();
+}
+
+function updateBossDefeatLevel(bossId) {
+  const container = document.getElementById(`defeatLevel-${bossId}`);
+  if (!container) return; 
+  const isDefeated = localStorage.getItem(bossId) === "true";
+  
+  if (isDefeated) {
+    const defeatLevel = localStorage.getItem(bossId + "-defeatLevel") || playerLevel;
+    
+    if (!container.querySelector('.defeat-level-input')) {
+      const levelLabel = document.createElement("span");
+      levelLabel.textContent = "Defeated at level: ";
+      levelLabel.classList.add("defeat-level-label");
+      
+      const levelInput = document.createElement("input");
+      levelInput.type = "number";
+      levelInput.min = "1";
+      levelInput.max = "713";
+      levelInput.value = defeatLevel;
+      levelInput.classList.add("defeat-level-input");
+      
+      levelInput.addEventListener("change", (e) => {
+        const newLevel = Math.max(1, Math.min(713, parseInt(e.target.value) || 1));
+        e.target.value = newLevel;
+        localStorage.setItem(bossId + "-defeatLevel", newLevel);
+      });
+      
+      levelInput.addEventListener("blur", (e) => {
+        const newLevel = Math.max(1, Math.min(713, parseInt(e.target.value) || 1));
+        e.target.value = newLevel;
+        localStorage.setItem(bossId + "-defeatLevel", newLevel);
+      });
+      
+      container.appendChild(levelLabel);
+      container.appendChild(levelInput);
+    }
+  } else {
+    container.innerHTML = "";
+  }
 }
 
 function resetChecklist() {
@@ -414,9 +475,10 @@ function exportData() {
   allBossEntries.forEach(({ bossName, isMain, id }) => {
     const beaten = localStorage.getItem(id) === "true";
     const deathCount = localStorage.getItem(id + "-deaths") || 0;
+    const defeatLevel = localStorage.getItem(id + "-defeatLevel") || "N/A";
     const statusIcon = beaten ? "✅" : "❌";
 
-    output += `${bossName}: ${statusIcon} [${deathCount}]\n`;
+    output += `${bossName}: ${statusIcon} [Deaths: ${deathCount}] [Level: ${defeatLevel}]\n`;
   });
 
   const blob = new Blob([output], { type: "text/plain" });
