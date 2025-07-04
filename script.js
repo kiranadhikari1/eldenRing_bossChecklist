@@ -310,12 +310,17 @@ function renderChecklist() {
       label.appendChild(nameSpan);
       label.appendChild(locationSpan);
       label.appendChild(defeatLevelContainer);
-      label.appendChild(deathContainer);
 
       regionDiv.appendChild(label);
       
       // Initialize defeat level display
-      updateBossDefeatLevel(id);
+      requestAnimationFrame(() => {
+        if (input.checked) {
+          updateBossDefeatLevel(id);
+        }
+      });
+
+      label.appendChild(deathContainer);
     });
 
     container.appendChild(regionDiv);
