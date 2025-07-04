@@ -185,6 +185,31 @@ const totalMainBosses = Object.values(bosses)
   .filter(boss => boss.main)
   .length;
 
+// Player level and class management
+let playerLevel = parseInt(localStorage.getItem('playerLevel')) || 1;
+let playerClass = localStorage.getItem('playerClass') || 'Vagabond';
+
+function changeLevel(delta) {
+  playerLevel = Math.max(1, Math.min(713, playerLevel + delta)); // Elden Ring max level is 713
+  localStorage.setItem('playerLevel', playerLevel);
+  updateLevelDisplay();
+}
+
+function updateLevelDisplay() {
+  document.getElementById('levelDisplay').textContent = playerLevel;
+}
+
+function updateClass() {
+  const select = document.getElementById('classSelect');
+  playerClass = select.value;
+  localStorage.setItem('playerClass', playerClass);
+}
+
+function initPlayerInfo() {
+  updateLevelDisplay();
+  document.getElementById('classSelect').value = playerClass;
+}
+
 function renderChecklist() {
   const container = document.getElementById("checklist");
   container.innerHTML = "";
@@ -279,10 +304,13 @@ function renderChecklist() {
 }
 
 function resetChecklist() {
-  if (confirm("Are you sure you want to reset all progress?")) {
+  if (confirm("Are you sure you want to reset all progress? This will also reset your level and class.")) {
     Object.keys(localStorage).forEach((key) => {
-      if (key.includes("-")) localStorage.removeItem(key);
+      localStorage.removeItem(key);
     });
+    playerLevel = 1;
+    playerClass = 'Vagabond';
+    initPlayerInfo();
     renderChecklist();
     updateProgressCounter();
   }
@@ -376,6 +404,8 @@ function exportData() {
   });
 
   let output = `Player: ${playerName}\n`;
+  output += `Level: ${playerLevel}\n`;
+  output += `Class: ${playerClass}\n`;
   output += `Completion: ${percent}%\n`;
   output += `Bosses: ${checkedBosses} / ${totalBosses}\n`;
   output += `Story Bosses: ${beatenStoryBosses} / ${totalStoryBosses}\n`;
@@ -400,4 +430,6 @@ function exportData() {
   URL.revokeObjectURL(url);
 }
 
+// Initialize everything when the page loads
+initPlayerInfo();
 renderChecklist();

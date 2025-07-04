@@ -10,6 +10,32 @@
 <body>
 
   <h1>Elden Ring Boss Checklist</h1>
+  
+  <div class="player-info">
+    <div class="level-container">
+      <span class="class-label">Level:</span>
+      <button class="level-button" onclick="changeLevel(-1)">-</button>
+      <span class="level-display" id="levelDisplay">1</span>
+      <button class="level-button" onclick="changeLevel(1)">+</button>
+    </div>
+    
+    <div class="class-container">
+      <span class="class-label">Class:</span>
+      <select class="class-select" id="classSelect" onchange="updateClass()">
+        <option value="Vagabond">Vagabond</option>
+        <option value="Warrior">Warrior</option>
+        <option value="Hero">Hero</option>
+        <option value="Bandit">Bandit</option>
+        <option value="Astrologer">Astrologer</option>
+        <option value="Prophet">Prophet</option>
+        <option value="Samurai">Samurai</option>
+        <option value="Prisoner">Prisoner</option>
+        <option value="Confessor">Confessor</option>
+        <option value="Wretch">Wretch</option>
+      </select>
+    </div>
+  </div>
+
   <p>
     <strong>🟨 Main Story Bosses</strong> are highlighted. <span style="color:#ff2e2e;"></span>
   </p>
